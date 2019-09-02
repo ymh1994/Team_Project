@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  
+<mapper namespace="global.sesoc.test5.dao.GuestbookDAO">
+
+<insert id="insert" parameterType="global.sesoc.test5.dto.Guestbook"  >
+
+INSERT INTO GUESTBOOK
+	(
+	 	SEQNO,
+	 	NAME,
+	 	PASSWORD,
+	 	CONTENT,
+	 	REGDATE
+	)
+	VALUES
+	(
+		guestbook_seq.nextVal,
+		#{name}
+		,#{password}
+		,#{content}
+		,sysdate
+	)
+
+</insert>
+
+<select id="getCount" resultType="int" >
+select count(*) from guestbook
+
+</select>
+
+<select id="selectAll" resultType="global.sesoc.test5.dto.Guestbook">
+select * from guestbook order by seqno desc
+</select>
+
+<delete id="delete" >
+delete from guestbook where seqno=#{seqno}
+
+</delete>
+
+ 
+
+</mapper>
